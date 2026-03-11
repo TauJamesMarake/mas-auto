@@ -107,13 +107,8 @@
   display: block;
   width: 36px;
   height: 2px;
-  margin-top: 100px;
   background: var(--red);
   box-shadow: 0 0 8px var(--red);
-}
-
-.hero-slogan {
-  margin-top: 100px;
 }
 
 .hero-title {
@@ -449,7 +444,7 @@
   margin-bottom: 20px;
 }
 
-/* ── BRANDS ───────────────────────────────────────────────────── */
+/* BRANDS */
 .brands-section {
   background: var(--black-mid);
   border-top: 1px solid var(--black-border);

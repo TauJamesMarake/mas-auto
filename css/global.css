@@ -637,7 +637,7 @@ body::before {
   transition-delay: 0.5s;
 }
 
-/*PAGE HERO HEADER (inner pages) */
+/*PAGE HERO HEADER */
 .page-hero {
   height: 280px;
   display: flex;
