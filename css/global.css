@@ -560,6 +560,12 @@ body::before {
   color: var(--red);
 }
 
+.footer-dev-info {
+  color: var(--red);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
 .footer-badge {
   font-family: var(--font-head);
   font-size: 0.75rem;
