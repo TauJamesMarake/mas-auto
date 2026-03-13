@@ -293,7 +293,7 @@
   clip-path: polygon(0 0, 90% 0, 100% 8%, 100% 100%, 10% 100%, 0 92%);
 }
 
-.about-snap-badge {
+/* .about-snap-badge {
   position: absolute;
   bottom: -20px;
   right: -20px;
@@ -323,7 +323,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
-}
+} */
 
 .about-snap-features {
   margin: 28px 0 32px;
