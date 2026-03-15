@@ -1,0 +1,21 @@
+{
+  "name": "MAS Auto",
+  "short_name": "MAS Auto",
+  "description": "Professional automotive workshop in Polokwane. Ride With Confidence.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#C8102E",
+  "icons": [
+    {
+      "src": "/assets/logo/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
