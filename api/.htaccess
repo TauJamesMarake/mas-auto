@@ -1,7 +1,3 @@
-# ─────────────────────────────────────────────────────────────
-# /api/.htaccess — API Folder Security (HostAfrica / Apache)
-# ─────────────────────────────────────────────────────────────
-
 # Block directory listing
 Options -Indexes
 
