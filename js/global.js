@@ -60,15 +60,6 @@
   });
 })();
 
-// Active Nav Link
-(function () {
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === path) link.classList.add('active');
-  });
-})();
-
 // Toast Notification
 window.showToast = function (message, duration = 4000) {
   let toast = document.getElementById('globalToast');

@@ -86,27 +86,28 @@
 
     /* ACTIVE LINK DETECTION*/
     function setActiveLink() {
-        // reads DOM + pathname
         const path = window.location.pathname;
 
-        // Determine which page we're on
-        let currentPage;
-        if (path === '/' || path.endsWith('index.html') || path === '') {
-            currentPage = 'home';
-        } else {
-            // Extract filename without extension: "about.html" → "about"
-            const file = path.split('/').pop().replace('.html', '');
-            currentPage = file || 'home';
-        }
+        // Normalise to just the filename: "/pages/about.html" → "about.html"
+        // Root path "/" or "/index.html" → "index.html"
+        const filename = path === '/' || path === ''
+            ? 'index.html'
+            : path.split('/').pop() || 'index.html';
 
-        // Apply .active to matching links in both desktop and mobile nav
         const allNavLinks = document.querySelectorAll(
-            '.nav-links a[data-page], .nav-mobile a[data-page]'
+            '.nav-links a, .nav-mobile a'
         );
 
         allNavLinks.forEach(link => {
-            link.classList.remove('active'); // reset first
-            if (link.dataset.page === currentPage) {
+            link.classList.remove('active');
+
+            // Get just the filename from the link's href attribute
+            // e.g. "../pages/about.html" → "about.html", "index.html" → "index.html"
+            const linkFile = (link.getAttribute('href') || '')
+                .split('/').pop()
+                .split('#')[0]; // strip any #anchor suffix
+
+            if (linkFile === filename) {
                 link.classList.add('active');
             }
         });
