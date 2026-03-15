@@ -1,104 +1,150 @@
-# 🚗 MAS Auto - Automotive Workshop Website
+# 🚗 MAS Auto — Ride With Confidence
 
-A professional multi-page website for MAS Auto, a automotive workshop in Polokwane, South Africa. Specializing in engine service, overhauls, fabrication, suspension, brakes, and sound system installations.
+Professional automotive workshop website for MAS Auto, Polokwane, South Africa.
 
-**Tagline:** *"Ride With Confidence"*
+---
+
+## 📋 Overview
+
+| | |
+|---|---|
+| **Business** | MAS Auto |
+| **Location** | Polokwane Space Park, 22 Doloriet Street, Ladanna |
+| **Phone** | 060 756 0744 |
+| **Hours** | Mon–Fri 08:00–17:30 · Sat 08:00–13:00 |
+| **Stack** | HTML · CSS · Vanilla JS · PHP · MySQL |
+| **Hosting** | HostAfrica (Apache, shared hosting) |
+| **Email** | PHPMailer + Resend SMTP |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-MASAuto/
-├── index.html                    # Homepage
-├── README.md                     # Project documentation
+mas-auto/                          ← Git repo root
 │
-├── css/                          # Stylesheets
-│   ├── global.css               # Global styles, navbar, footer, utilities
-│   ├── home.css                # Homepage-specific styles
-│   ├── about.css                # About page styles
-│   ├── services.css            # Services page styles
-│   ├── gallery.css              # Gallery page styles
-│   └── contact.css             # Contact page styles
+├── .gitignore                     ← Excludes .env, vendor/, logs
+├── .env.example                   ← Credential template (commit this, not .env)
+├── .htaccess                      ← HTTPS redirect, security headers, Gzip, caching
+├── robots.txt                     ← Search engine crawl rules
+├── sitemap.xml                    ← SEO sitemap
+├── README.md
 │
-├── js/                          # JavaScript files
-│   ├── global.js               # Global functionality, mobile nav, animations
-│   ├── gallery.js              # Gallery functionality
-│   └── contact.js              # Contact form functionality
+├── index.html                     ← Homepage
 │
-└── pages/                       # Sub-pages
-    ├── about.html              # About Us page
-    ├── services.html           # Services listing page
-    ├── gallery.html            # Photo gallery page
-    └── contact.html            # Contact & booking page
+├── pages/
+│   ├── about.html                 ← Workshop story, team, brand logos
+│   ├── services.html              ← All 6 services with scroll anchors
+│   ├── gallery.html               ← Filterable image grid + lightbox
+│   └── contact.html               ← Contact form + booking form + map
+│
+├── css/
+│   ├── global.css                 ← CSS variables, navbar, footer, animations
+│   ├── home.css                   ← Hero, counter, marquee, service cards
+│   ├── about.css                  ← Story, pillars, stats, team
+│   ├── services.css               ← Service detail layout, nav strip
+│   ├── gallery.css                ← Filter, grid, lightbox
+│   └── contact.css                ← Contact strip, forms, map, booking
+│
+├── js/
+│   ├── global.js                  ← Hamburger nav, scroll-shrink, scroll-reveal, toast
+│   ├── gallery.js                 ← Filter logic, lightbox, keyboard nav
+│   └── contact.js                 ← Form validation, POST to PHP, WhatsApp fallback
+│
+├── assets/
+│   ├── logo/
+│   │   ├── mas-logo.svg           ← Primary logo (SVG)
+│   │   ├── mas-logo-dark.png      ← For light backgrounds
+│   │   └── favicon.ico            ← Browser tab icon
+│   └── images/
+│       ├── hero-bg.jpg            ← Homepage hero background
+│       ├── og-image.jpg           ← Social share preview (1200×630px)
+│       ├── workshop/              ← Gallery: workshop shots
+│       ├── engine/                ← Gallery: engine work
+│       ├── audio/                 ← Gallery: sound system installs
+│       └── team/                  ← About page: staff photos
+│
+└── api/
+    ├── .htaccess                  ← Blocks direct access to db.php, mailer.php, schema.sql
+    ├── db.php                     ← MySQL connection via .env (singleton)
+    ├── mailer.php                 ← PHPMailer + Resend SMTP (3 email functions)
+    ├── booking.php                ← POST endpoint: CORS, rate limit, honeypot, whitelist
+    ├── contact.php                ← POST endpoint: CORS, rate limit, spam filter
+    └── schema.sql                 ← Run once in phpMyAdmin to create tables
 ```
 
----
-
-## ✨ Features
-
-- **Responsive Design** - Fully mobile-responsive with hamburger navigation
-- **Modern UI/UX** - Smooth animations, hover effects, and transitions
-- **Service Showcase** - 6 main services with detailed cards
-- **Gallery Section** - Bento-style image gallery
-- **Brand Support** - Showcase of vehicle brands serviced (VW, BMW, Toyota, Audi, Mercedes, Ford)
-- **Booking System** - Service booking form with validation
-- **Contact Integration** - Phone, WhatsApp, and location details
-- **Performance Optimized** - Lazy loading, efficient CSS/JS
+> **Note:** `.env` and `vendor/` live **above** `public_html` on the server — they are never committed to Git and never web-accessible.
 
 ---
 
-## 🛠️ Tech Stack
+## 🔒 Security Measures
 
-| Category | Technology |
-|----------|------------|
-| **HTML5** | Semantic markup |
-| **CSS3** | Custom CSS, Flexbox, Grid, Animations |
-| **JavaScript** | Vanilla JS (ES6+) |
-| **Fonts** | Barlow Condensed, Font Awesome Icons |
-| **Images** | Unsplash (CDN) |
-
----
-
-## 🚀 Getting Started
-
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. **Open in browser:**
-   Simply open `index.html` in your preferred web browser.
-
-3. **Customize:**
-   - Edit `index.html` and files in `pages/` for content changes
-   - Modify `css/*.css` files for styling adjustments
-   - Update `js/*.js` files for functionality changes
-
----
-
-## 📞 Contact Information
-
-| | Details |
+| Layer | Implementation |
 |---|---|
-| **Phone** | 060 756 0744 |
-| **Address** | Polokwane Space Park, 22 Doloriet Street, Ladanna, Workshop Unit 0 |
-| **Hours** | Mon - Fri: 08:00 - 17:30, Sat: 08:00 - 13:00 |
-| **Location** | Polokwane, Limpopo, South Africa |
+| Credentials | `.env` above web root, loaded via `vlucas/phpdotenv` |
+| CORS | Locked to `SITE_URL` domain only — no wildcard |
+| Rate limiting | 5 bookings / 10 messages per IP per hour (MySQL-based) |
+| Honeypot | Hidden `website` field — bots fill it, real users don't |
+| Input validation | Server-side: length limits, regex, date checks, email validation |
+| Service whitelist | Only the 7 defined services are accepted |
+| Spam filter | Keyword filter + URL count limit on contact messages |
+| SQL injection | Prepared statements throughout — no string concatenation |
+| File access | `.htaccess` blocks `db.php`, `mailer.php`, `schema.sql` from browser |
+| HTTPS | Root `.htaccess` forces 301 redirect on all HTTP traffic |
+| Security headers | `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` |
+
+---
+
+## 🚀 Deployment
+
+### First-time setup on HostAfrica
+
+```bash
+# 1. SSH into server or use cPanel Terminal
+# 2. Navigate above public_html
+cd ~
+
+# 3. Create .env from example
+cp public_html/.env.example .env
+nano .env   # fill in real credentials
+
+# 4. Install Composer dependencies
+cd ~/public_html
+composer require vlucas/phpdotenv phpmailer/phpmailer
+
+# 5. Run schema.sql
+# cPanel → phpMyAdmin → select database → SQL tab → paste schema.sql → Go
+```
+
+### Pushing updates
+
+```bash
+git add .
+git commit -m "Your message"
+git push origin main
+# Then pull on server: git pull origin main
+```
+
+### What NEVER goes to GitHub
+- `.env` (real credentials)
+- `vendor/` (Composer packages — regenerated with `composer install`)
+
+---
+
+## 🎨 Design Tokens
+
+| Token | Value |
+|---|---|
+| Primary red | `#C8102E` |
+| Background | `#080808` |
+| Card | `#141414` |
+| Silver | `#B0B0B0` |
+| Heading font | Barlow Condensed |
+| Body font | Exo 2 |
 
 ---
 
 ## 📄 License
 
-All rights reserved. © 2026 MAS Auto - Developed by Tau J. Marake
-
----
-
-## 🔗 Quick Links
-
-- [Home](index.html)
-- [About Us](pages/about.html)
-- [Services](pages/services.html)
-- [Gallery](pages/gallery.html)
-- [Contact & Booking](pages/contact.html)
-
+All rights reserved. © 2026 MAS Auto  
+Developed by Tau J. Marake

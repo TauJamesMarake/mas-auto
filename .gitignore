@@ -1,0 +1,25 @@
+# ── Credentials & environment 
+.env
+.env.local
+.env.production
+
+# ── Composer / PHP vendor dependencies 
+vendor/
+
+# ── OS junk 
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor folders
+.vscode/
+.idea/
+*.code-workspace
+
+# ── Logs
+*.log
+error_log
+
+# ── Compiled / cache 
+*.min.css
+*.min.js

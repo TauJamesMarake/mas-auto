@@ -1,0 +1,27 @@
+Options -Indexes
+
+# Block direct browser access to internal files
+<FilesMatch "^(db|mailer)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block SQL schema file
+<FilesMatch "\.sql$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block .env files (belt-and-suspenders)
+<FilesMatch "^\.env">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin"
+</IfModule>

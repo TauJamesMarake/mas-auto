@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://masauto.co.za/sitemap.xml

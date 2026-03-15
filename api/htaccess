@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────
+# /api/.htaccess — API Folder Security (HostAfrica / Apache)
+# ─────────────────────────────────────────────────────────────
+
+# Block directory listing
+Options -Indexes
+
+# Block direct browser access to internal files
+# db.php and mailer.php should NEVER be directly accessible
+<FilesMatch "^(db|mailer)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block all SQL files from web access
+<FilesMatch "\.sql$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block all .env files (belt-and-suspenders — .env is above web root anyway)
+<FilesMatch "^\.env">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Force UTF-8
+AddDefaultCharset UTF-8
+
+# Prevent MIME sniffing
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin"
+</IfModule>
